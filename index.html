@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta name="description" content="Mobile Store — Phones, laptops and accessories.">
+
+    <title>Mega Elite</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     MAIN HEADER
+     ===================================================== -->
+
+<!-- =====================================================
+     MAIN HEADER
+     ===================================================== -->
+
+<header class="main-header">
+
+    <div class="header-inner">
+
+        <!-- LOGO -->
+
+<a href="index.html" class="brand" aria-label="Mega Elite home">
+    <span class="store-brand">
+
+        <svg class="store-cart-icon" viewBox="0 0 576 512" aria-hidden="true">
+
+            <!-- BLUE CART BODY -->
+            <path fill="#3157C8"
+                d="M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96z" />
+
+            <!-- ORANGE WHEELS -->
+            <circle fill="#FF7A00" cx="176" cy="464" r="48" />
+            <circle fill="#FF7A00" cx="464" cy="464" r="48" />
+
+        </svg>
+
+        <span class="mobile-text">Mega</span>
+        <span class="store-text">Elite</span>
+
+    </span>
+</a>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-area">
+
+            <!-- Kept for app.js compatibility -->
+            <select id="searchCategory" aria-hidden="true" tabindex="-1">
+                <option value="all">All</option>
+                <option value="Phones">Phones</option>
+                <option value="Laptops">Laptops</option>
+                <option value="AirPods">AirPods</option>
+                <option value="Headphones">Headphones</option>
+                <option value="Power Banks">Power Banks</option>
+                <option value="Watches">Watches</option>
+            </select>
+
+            <input id="searchInput" type="search" placeholder="Search phones, laptops and accessories"
+                autocomplete="off">
+
+            <button id="searchButton" class="search-button" type="button" aria-label="Search">
+                <span class="search-icon"></span>
+            </button>
+
+        </div>
+
+</button>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<main>
+
+    <section class="hero" id="home">
+
+        <!-- Deep black / blue atmosphere -->
+
+        <div class="hero-background">
+
+            <span class="hero-glow glow-one"></span>
+            <span class="hero-glow glow-two"></span>
+
+            <span class="hero-ring ring-one"></span>
+            <span class="hero-ring ring-two"></span>
+            <span class="hero-ring ring-three"></span>
+
+        </div>
+
+
+        <div class="hero-inner">
+
+            <!-- LEFT -->
+
+            <div class="hero-content">
+
+                <div class="hero-brand-line">
+
+                    <span class="hero-brand-dot"></span>
+
+                    <span>
+                        MEGA ELITE
+                    </span>
+
+                </div>
+
+
+            <h1>
+                Everything you need.
+                <span class="hero-all-place">All in one place.</span>
+            </h1>
+
+
+                <p>
+                    Shop phones, laptops and everyday technology
+                    from one simple store.
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <button id="heroShopButton" class="hero-primary" type="button">
+                        Shop products
+
+                        <span class="hero-arrow">
+                            →
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT VISUAL -->
+
+            <div class="hero-showcase">
+
+                <div class="showcase-glow"></div>
+
+
+                <div class="showcase-card showcase-main">
+
+                    <div class="showcase-top">
+
+                        <span class="showcase-label">
+                            MEGA ELITE
+                        </span>
+
+                        <span class="showcase-status">
+                            SHOP
+                        </span>
+
+                    </div>
+
+
+                    <div class="showcase-display">
+
+<div class="showcase-device device-phone">
+
+    <div class="device-camera"></div>
+
+<video id="heroPhoneVideo" class="hero-device-video phone-video" muted loop playsinline preload="metadata">
+</video>
+
+<div class="phone-volume-control">
+
+    <button id="phoneVolumeButton" class="phone-volume-button" type="button" aria-label="Turn sound on">
+
+        <svg id="phoneVolumeIcon" viewBox="0 0 24 24" aria-hidden="true">
+
+            <path d="M4 9v6h4l5 4V5L8 9H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+
+            <path d="M16 10l4 4m0-4l-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+        </svg>
+
+    </button>
+
+</div>
+
+</div>
+
+
+<div class="showcase-device device-laptop">
+
+    <div class="laptop-screen">
+
+        <video id="heroLaptopVideo" class="hero-device-video laptop-video" muted loop playsinline preload="metadata">
+        </video>
+
+    </div>
+
+    <div class="laptop-base"></div>
+
+    <!-- LAPTOP VOLUME / PLAY CONTROL -->
+    <div class="laptop-volume-control">
+
+        <button id="laptopVolumeButton" class="laptop-volume-button" type="button"
+            aria-label="Play laptop video with sound">
+
+            <svg id="laptopVolumeIcon" viewBox="0 0 24 24" aria-hidden="true">
+
+                <path d="M4 9v6h4l5 4V5L8 9H4z" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+
+                <path d="M16 10l4 4m0-4l-4 4" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" />
+
+            </svg>
+
+        </button>
+
+    </div>
+
+</div>
+                    </div>
+
+
+                    <div class="showcase-bottom">
+
+                        <span>
+                            PHONES
+                        </span>
+
+                        <span>
+                            LAPTOPS
+                        </span>
+
+                        <span>
+                            ACCESSORIES
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="showcase-card floating-card floating-card-one">
+
+                    <span class="mini-icon"></span>
+
+                    <div>
+                        <small>Latest</small>
+                        <strong>Technology</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="showcase-card floating-card floating-card-two">
+
+                    <span class="mini-check"></span>
+
+                    <div>
+                        <small>Simple</small>
+                        <strong>Shopping</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+</section>
+
+<!-- =====================================================
+     PRODUCT AREA
+     ===================================================== -->
+
+        <section class="products-section" id="shop">
+
+            <div class="products-heading">
+
+                <div>
+                    <span class="section-label">AVAILABLE NOW</span>
+
+                    <h2>Products</h2>
+                </div>
+
+                <span id="productCount" class="product-count"></span>
+
+            </div>
+
+
+            <!-- Firebase products will appear here -->
+
+            <div id="productsGrid" class="products-grid"></div>
+
+
+            <!-- Loading -->
+
+            <div id="productsLoading" class="products-loading">
+
+                <div class="loading-card">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="loading-card">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="loading-card">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </div>
+
+
+            <!-- Empty -->
+
+            <div id="productsEmpty" class="products-empty hidden">
+                <div class="empty-mark"></div>
+
+                <h3>No products available yet</h3>
+
+                <p>
+                    Products uploaded from the mega elite
+                    will appear here.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+       PRODUCT DETAILS MODAL
+       ===================================================== -->
+
+    <div id="productModal" class="modal" aria-hidden="true">
+
+        <div class="modal-backdrop" data-close-modal></div>
+
+        <div class="modal-panel product-modal-panel">
+
+            <button type="button" class="modal-close" data-close-modal aria-label="Close">
+                ×
+            </button>
+
+
+            <div class="product-detail">
+
+<div id="productDetailMedia" class="product-detail-media">
+
+    <div class="product-gallery">
+
+        <div id="productImageThumbnails" class="product-image-thumbnails"></div>
+
+
+        <div class="product-main-image-wrapper">
+
+<button type="button" id="productImagePrev" class="product-image-arrow product-image-prev" aria-label="Previous image">
+    ‹
+</button>
+
+<img id="productDetailsImage" class="product-details-image" src="" alt="Product">
+
+<button type="button" id="productImageNext" class="product-image-arrow product-image-next" aria-label="Next image">
+    ›
+</button>
+
+
+            <div id="productImageCounter" class="product-image-counter">
+                1/1
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+                <div class="product-detail-info">
+
+                    <span id="productDetailCategory" class="detail-category"></span>
+
+<h2 id="productDetailName"></h2>
+
+                    <div id="productDetailPrice" class="detail-price"></div>
+
+
+                    <div class="detail-information">
+
+                        <div>
+                            <span>Made in</span>
+                            <strong id="productDetailMadeIn">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Condition</span>
+                            <strong id="productDetailCondition">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Storage</span>
+                            <strong id="productDetailStorage">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Model</span>
+                            <strong id="productDetailModel">—</strong>
+                        </div>
+
+                    </div>
+
+
+                    <button id="productBuyButton" class="primary-button" type="button">
+                        Buy Now!
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<!-- =====================================================
+     ADDRESS CHECKOUT MODAL
+     ===================================================== -->
+
+<div id="addressModal" class="modal" aria-hidden="true">
+
+    <div class="modal-backdrop" data-close-modal></div>
+
+    <div class="modal-panel checkout-panel">
+
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">
+            ×
+        </button>
+
+        <div class="checkout-header">
+
+            <span class="section-label">DELIVERY</span>
+
+            <h2>Delivery Information</h2>
+
+            <p>
+                Enter your details so we can deliver your order to you.
+            </p>
+
+        </div>
+
+
+        <form id="addressForm">
+
+            <div class="form-grid">
+
+                <!-- FULL NAME -->
+                <label>
+                    <span>Full Name</span>
+                    <input id="addressName" type="text" placeholder="Enter your full name" autocomplete="name" required>
+                </label>
+
+
+                <!-- PHONE NUMBER -->
+                <label>
+                    <span>Phone Number</span>
+                    <input id="addressPhone" type="tel" placeholder="Enter your phone number" autocomplete="tel"
+                        required>
+                </label>
+
+
+                <!-- STATE -->
+                <label>
+                    <span>State</span>
+                    <input id="addressState" type="text" placeholder="Enter your state" autocomplete="address-level1"
+                        required>
+                </label>
+
+
+                <!-- CITY / TOWN -->
+                <label>
+                    <span>City / Town</span>
+                    <input id="addressCity" type="text" placeholder="Enter your city or town"
+                        autocomplete="address-level2" required>
+                </label>
+
+
+                <!-- AREA / NEIGHBORHOOD -->
+                <label>
+                    <span>Area / Neighborhood</span>
+                    <input id="addressArea" type="text" placeholder="Enter your area" required>
+                </label>
+
+
+                <!-- FULL DELIVERY ADDRESS -->
+                <label class="full">
+                    <span>Full Delivery Address</span>
+                    <input id="addressAddress" type="text" placeholder="House number, street name, etc."
+                        autocomplete="street-address" required>
+                </label>
+
+            </div>
+
+
+            <button class="primary-button" type="submit">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+    <!-- =====================================================
+       PAYMENT MODAL
+       ===================================================== -->
+
+    <div id="paymentModal" class="modal" aria-hidden="true">
+
+        <div class="modal-backdrop" data-close-modal></div>
+
+        <div class="modal-panel payment-panel">
+
+            <button type="button" class="modal-close" data-close-modal aria-label="Close">
+                ×
+            </button>
+
+
+            <div class="checkout-header">
+
+                <span class="section-label">PAYMENT</span>
+
+                <h2>Complete your order</h2>
+
+            </div>
+
+
+            <div class="payment-product">
+
+                <div id="paymentProductImage"></div>
+
+                <div>
+<strong id="paymentProductName"></strong>
+
+                    <span id="paymentProductPrice">
+                        ₦0.00
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="payment-summary">
+
+                <div>
+                    <span>Product price</span>
+                    <strong id="paymentTotal">₦0.00</strong>
+                </div>
+
+                <div>
+                    <span>Delivery Fee</span>
+                    <strong id="paymentAdvance">₦0.00</strong>
+                </div>
+
+            </div>
+
+
+            <div class="remaining-note">
+                Proceed to Payment → Confirm Payment → Click “I’ve Paid”.
+            </div>
+
+
+            <div class="store-account">
+
+                <span>Bank Name: Paystack-Titan.</span>
+
+                <div class="account-number-row">
+
+                    <strong id="storeAccountNumber">
+                        Account Number
+                    </strong>
+
+                    <button id="copyAccountButton" type="button">
+                        Copy
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button id="paidButton" class="primary-button" type="button">
+                I've Paid
+            </button>
+
+        </div>
+
+    </div>
+
+
+<!-- =====================================================
+     CONFIRMATION MODAL
+     ===================================================== -->
+
+<div id="confirmationModal" class="modal" aria-hidden="true">
+
+    <div class="modal-backdrop"></div>
+
+    <div class="modal-panel confirmation-panel">
+
+<div class="confirmation-brand">
+
+    <div class="confirmation-logo">
+        🛒
+    </div>
+
+    <div>
+        <span>
+            <span class="brand-mobile">Mega</span>
+            <span class="brand-store">Elite!</span>
+        </span>
+
+        <small>Delivery Information</small>
+    </div>
+
+</div>
+
+
+        <div class="confirmation-divider"></div>
+
+
+        <!-- TITLE -->
+        <h2>Mega Elite</h2>
+
+
+        <!-- MESSAGE -->
+        <div class="confirmation-message">
+
+            <p class="confirmation-intro">
+                If You Have Paid For This Product
+            </p>
+
+
+            <!-- SELECTED PRODUCT IMAGE -->
+            <div class="confirmation-product-preview">
+
+                <img id="confirmationProductImage" src="" alt="Selected product">
+
+            </div>
+
+
+            <!-- PRODUCT NAME -->
+            <div id="confirmationProductName" class="confirmation-product-name"></div>
+
+
+<p class="confirmation-delivery-text">
+    And Successfully Given
+    <span class="brand-mobile">Mega</span>
+    <span class="brand-store">Elite</span>
+    Your Full Address For Your Purchase Delivery,
+    Then Kindly Copy The Phone Number Below And Make Sure
+    You Communicates With The Driver Till Your Purchase
+    Is Received.
+</p>
+
+        </div>
+
+
+        <!-- NOTE -->
+        <div class="confirmation-note">
+
+            <strong>Note:</strong>
+
+            <p>
+                Our Carriers In Mega Elite Company Are Owned By Us.
+                So We Do Not Allow External Carriers In Mega Elite
+                Gadget Selling Company. So Your Delivery Will Always
+                Be Secure And Encrypted.
+            </p>
+
+        </div>
+
+
+        <!-- RIDER -->
+        <div class="rider-contact">
+
+            <span class="rider-label">
+                YOUR RIDER'S PHONE NUMBER
+            </span>
+
+<div class="rider-phone-row">
+    <span class="rider-call-icon">☎</span>
+    <strong id="riderPhoneNumber">07070653390</strong>
+</div>
+
+        </div>
+
+
+        <!-- ENDING -->
+        <p class="confirmation-ending">
+            Here We Come, And Here The Best!
+        </p>
+
+
+        <!-- COPY BUTTON -->
+        <button id="confirmationOkButton" class="copy-rider-button" type="button">
+            <span id="copyRiderButtonText">
+                Copy Your Rider Phone Number
+            </span>
+        </button>
+
+    </div>
+
+</div>
+
+    <!-- =====================================================
+       ACCOUNT MODAL
+       ===================================================== -->
+
+    <div id="accountModal" class="modal" aria-hidden="true">
+
+        <div class="modal-backdrop" data-close-modal></div>
+
+        <div class="modal-panel small-panel">
+
+            <button type="button" class="modal-close" data-close-modal aria-label="Close">
+                ×
+            </button>
+
+            <span class="section-label">ACCOUNT</span>
+
+            <h2>Your account</h2>
+
+            <p class="modal-description">
+                Your account information will appear here.
+            </p>
+
+            <button type="button" class="secondary-button" data-close-modal>
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+       ORDERS MODAL
+       ===================================================== -->
+
+    <div id="ordersModal" class="modal" aria-hidden="true">
+
+        <div class="modal-backdrop" data-close-modal></div>
+
+        <div class="modal-panel orders-panel">
+
+            <button type="button" class="modal-close" data-close-modal aria-label="Close">
+                ×
+            </button>
+
+            <span class="section-label">ORDERS</span>
+
+            <h2>Your orders</h2>
+
+            <div id="ordersList"></div>
+
+            <div id="ordersEmpty" class="products-empty">
+
+                <div class="empty-mark"></div>
+
+                <h3>No orders yet</h3>
+
+                <p>
+                    Your orders will appear here after you place one.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+       TOAST
+       ===================================================== -->
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- =========================================================
+         BUY NOW CONFIRMATION MODAL
+         ========================================================= -->
+    
+    <div id="buyConfirmModal" class="modal" aria-hidden="true">
+    
+        <div class="modal-backdrop" data-close-buy-confirm></div>
+    
+    
+        <div class="modal-panel buy-confirm-panel" role="dialog" aria-modal="true" aria-labelledby="buyConfirmName">
+    
+            <div class="buy-confirm-product">
+    
+                <div class="buy-confirm-image-wrap">
+    
+                    <img id="buyConfirmImage" class="buy-confirm-image" src="" alt="Selected product">
+    
+                </div>
+    
+    
+                <div class="buy-confirm-product-info">
+    
+<span id="buyConfirmCategory" class="buy-confirm-category"></span>
+
+
+<h3 id="buyConfirmName" class="buy-confirm-question"></h3>
+    
+    
+                    <strong id="buyConfirmPrice" class="buy-confirm-price">
+                        ₦0.00
+                    </strong>
+    
+                </div>
+    
+            </div>
+    
+    
+            <div class="buy-confirm-message">
+    
+                <h2>
+                    Continue With This Purchase?
+                </h2>
+    
+                <p>
+                    Are you sure you want to buy this product?
+                </p>
+    
+            </div>
+    
+    
+            <div class="buy-confirm-actions">
+    
+                <button type="button" id="buyConfirmNo" class="buy-confirm-no">
+                    No
+                </button>
+    
+    
+                <button type="button" id="buyConfirmYes" class="buy-confirm-yes">
+                    Yes, Continue
+                </button>
+    
+            </div>
+    
+        </div>
+    
+    </div>
+
+    <!-- =====================================================
+       APPLICATION
+       ===================================================== -->
+       
+
+    <script type="module" src="app.js"></script>
+
+</body>
+
+</html>
