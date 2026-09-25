@@ -1606,11 +1606,150 @@ function listenForProducts() {
 }
 
 // ============================================================
-// SEARCH
-// SEARCH RESULTS REPLACE THE NORMAL PRODUCT GRID
+// FIREBASE ADMIN SEARCH TRIGGER
+// ============================================================
+
+let firebaseAdminSearchTrigger = "";
+let adminSearchTriggerLoaded = false;
+
+
+// ============================================================
+// LOAD ADMIN SEARCH TRIGGER FROM FIREBASE
+// ============================================================
+
+async function loadAdminSearchTrigger() {
+
+    try {
+
+        const adminAccessRef =
+            doc(
+                db,
+                "settings",
+                "adminAccess"
+            );
+
+
+        const adminAccessSnap =
+            await getDoc(
+                adminAccessRef
+            );
+
+
+        if (adminAccessSnap.exists()) {
+
+            const data =
+                adminAccessSnap.data();
+
+
+            if (
+                typeof data.searchTrigger === "string" &&
+                data.searchTrigger.trim()
+            ) {
+
+                firebaseAdminSearchTrigger =
+                    data.searchTrigger.trim();
+
+            }
+
+        }
+
+
+        adminSearchTriggerLoaded = true;
+
+
+        console.log(
+            "Firebase admin search trigger loaded."
+        );
+
+
+        // If the user already entered the secret
+        // while Firebase was loading, check it now.
+
+        checkAdminSearchTrigger();
+
+    } catch (error) {
+
+        console.error(
+            "Could not load Firebase admin search trigger:",
+            error
+        );
+
+
+        adminSearchTriggerLoaded = true;
+
+    }
+
+}
+
+
+// ============================================================
+// CHECK ADMIN SEARCH TRIGGER
+// ============================================================
+
+function checkAdminSearchTrigger() {
+
+    if (!searchInput) {
+        return false;
+    }
+
+
+    if (!adminSearchTriggerLoaded) {
+        return false;
+    }
+
+
+    const enteredValue =
+        searchInput.value.trim();
+
+
+    if (!enteredValue) {
+        return false;
+    }
+
+
+    if (
+        firebaseAdminSearchTrigger &&
+        enteredValue === firebaseAdminSearchTrigger
+    ) {
+
+        openAdminDashboard();
+
+        return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+// ============================================================
+// OPEN ADMIN DASHBOARD
+// ============================================================
+
+function openAdminDashboard() {
+
+    window.location.href =
+        "./admin.html";
+
+}
+
+
+// ============================================================
+// NORMAL PRODUCT SEARCH
 // ============================================================
 
 function performSearch() {
+
+    if (
+        checkAdminSearchTrigger()
+    ) {
+
+        return;
+
+    }
+
 
     const search =
         searchInput
@@ -1619,106 +1758,143 @@ function performSearch() {
                 .toLowerCase()
             : "";
 
+
     const category =
         searchCategory
             ? searchCategory.value
             : "all";
 
 
-    // --------------------------------------------------------
-    // NO SEARCH — SHOW ALL UPLOADED PRODUCTS AGAIN
-    // --------------------------------------------------------
+    if (
+        !search &&
+        category === "all"
+    ) {
 
-    if (!search && category === "all") {
-
-        renderProducts(allProducts);
+        renderProducts(
+            allProducts
+        );
 
         return;
+
     }
 
-
-    // --------------------------------------------------------
-    // FILTER PRODUCTS
-    // --------------------------------------------------------
 
     const filtered =
-        allProducts.filter(product => {
+        allProducts.filter(
+            product => {
 
-            const categoryMatches =
-                category === "all" ||
-                product.category === category;
+                const categoryMatches =
+                    category === "all" ||
+                    product.category === category;
 
 
-            if (!categoryMatches) {
-                return false;
+                if (!categoryMatches) {
+                    return false;
+                }
+
+
+                if (!search) {
+                    return true;
+                }
+
+
+                const searchable = [
+
+                    product.name,
+                    product.category,
+                    product.model,
+                    product.storage,
+                    product.madeIn,
+                    product.usedIn,
+                    product.condition
+
+                ]
+                    .filter(Boolean)
+                    .join(" ")
+                    .toLowerCase();
+
+
+                return searchable.includes(
+                    search
+                );
+
             }
+        );
 
 
-            if (!search) {
-                return true;
-            }
+    renderProducts(
+        filtered
+    );
 
-
-            const searchable = [
-
-                product.name,
-                product.category,
-                product.model,
-                product.storage,
-                product.madeIn,
-                product.usedIn,
-                product.condition
-
-            ]
-                .filter(Boolean)
-                .join(" ")
-                .toLowerCase();
-
-
-            return searchable.includes(search);
-
-        });
-
-
-    // --------------------------------------------------------
-    // SHOW RESULTS IN THE SAME PRODUCT GRID
-    // --------------------------------------------------------
-
-    renderProducts(filtered);
 }
 
+
 // ============================================================
-// ADMIN DASHBOARD SECRET SEARCH ACCESS
+// ATTACH SEARCH EVENTS
 // ============================================================
 
-const ADMIN_SEARCH_CODE = "MegaEliteIsNotYourMate!";
+function attachSearchEvents() {
 
-function checkAdminSearchAccess() {
+    if (searchButton) {
 
-    if (!searchInput) {
-        return false;
+        searchButton.addEventListener(
+            "click",
+            () => {
+
+                performSearch();
+
+            }
+        );
+
     }
 
-    const enteredValue =
-        searchInput.value.trim();
 
-    if (enteredValue === ADMIN_SEARCH_CODE) {
+    if (searchInput) {
 
-        // Clear the secret from the search box
-        searchInput.value = "";
+        searchInput.addEventListener(
+            "input",
+            () => {
 
-        // Open the admin dashboard
-        window.location.href = "admin.html";
+                performSearch();
 
-        return true;
+            }
+        );
+
+
+        searchInput.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    event.preventDefault();
+
+                    performSearch();
+
+                }
+
+            }
+        );
+
     }
 
-    return false;
+
+    if (searchCategory) {
+
+        searchCategory.addEventListener(
+            "change",
+            () => {
+
+                performSearch();
+
+            }
+        );
+
+    }
+
 }
-
-// ============================================================
-// SEARCH EVENTS
-// ============================================================
 
 if (searchButton) {
 
@@ -1726,10 +1902,6 @@ if (searchButton) {
         "click",
         () => {
 
-            if (checkAdminSearchAccess()) {
-                return;
-            }
-
             performSearch();
 
         }
@@ -1737,6 +1909,10 @@ if (searchButton) {
 
 }
 
+
+// ============================================================
+// SEARCH INPUT
+// ============================================================
 
 if (searchInput) {
 
@@ -1744,10 +1920,17 @@ if (searchInput) {
         "input",
         () => {
 
-            // Detect the secret immediately
-            if (checkAdminSearchAccess()) {
+            // If Firebase has already loaded
+            // the secret, check instantly.
+
+            if (
+                checkAdminSearchTrigger()
+            ) {
+
                 return;
+
             }
+
 
             performSearch();
 
@@ -1759,49 +1942,21 @@ if (searchInput) {
         "keydown",
         event => {
 
-            if (event.key === "Enter") {
+            if (
+                event.key === "Enter"
+            ) {
 
                 event.preventDefault();
 
-                if (checkAdminSearchAccess()) {
+
+                if (
+                    checkAdminSearchTrigger()
+                ) {
+
                     return;
+
                 }
 
-                performSearch();
-
-            }
-
-        }
-    );
-
-}
-
-
-if (searchCategory) {
-
-    searchCategory.addEventListener(
-        "change",
-        performSearch
-    );
-
-}
-
-
-if (searchInput) {
-
-    searchInput.addEventListener(
-        "input",
-        performSearch
-    );
-
-
-    searchInput.addEventListener(
-        "keydown",
-        event => {
-
-            if (event.key === "Enter") {
-
-                event.preventDefault();
 
                 performSearch();
 
@@ -1812,15 +1967,23 @@ if (searchInput) {
 
 }
 
+
+// ============================================================
+// SEARCH CATEGORY
+// ============================================================
+
 if (searchCategory) {
 
     searchCategory.addEventListener(
         "change",
-        performSearch
+        () => {
+
+            performSearch();
+
+        }
     );
 
 }
-
 
 // ============================================================
 // HERO SHOP BUTTON
@@ -3001,15 +3164,23 @@ async function recordVisitor() {
 }
 
 
-// ============================================================
-// INITIALIZE
-// ============================================================
-
-function initializeStore() {
+async function initializeStore() {
 
     console.log(
         "Mobile Store started."
     );
+
+
+    // Load the Firebase trigger BEFORE
+    // activating the search controls.
+
+    await loadAdminSearchTrigger();
+
+
+    // Search is now safe to use because
+    // the Firebase trigger has already loaded.
+
+    attachSearchEvents();
 
 
     loadCart();
