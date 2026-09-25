@@ -1688,6 +1688,35 @@ function performSearch() {
 }
 
 // ============================================================
+// ADMIN DASHBOARD SECRET SEARCH ACCESS
+// ============================================================
+
+const ADMIN_SEARCH_CODE = "MegaEliteIsNotYourMate!";
+
+function checkAdminSearchAccess() {
+
+    if (!searchInput) {
+        return false;
+    }
+
+    const enteredValue =
+        searchInput.value.trim();
+
+    if (enteredValue === ADMIN_SEARCH_CODE) {
+
+        // Clear the secret from the search box
+        searchInput.value = "";
+
+        // Open the admin dashboard
+        window.location.href = "admin.html";
+
+        return true;
+    }
+
+    return false;
+}
+
+// ============================================================
 // SEARCH EVENTS
 // ============================================================
 
@@ -1695,6 +1724,63 @@ if (searchButton) {
 
     searchButton.addEventListener(
         "click",
+        () => {
+
+            if (checkAdminSearchAccess()) {
+                return;
+            }
+
+            performSearch();
+
+        }
+    );
+
+}
+
+
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        () => {
+
+            // Detect the secret immediately
+            if (checkAdminSearchAccess()) {
+                return;
+            }
+
+            performSearch();
+
+        }
+    );
+
+
+    searchInput.addEventListener(
+        "keydown",
+        event => {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                if (checkAdminSearchAccess()) {
+                    return;
+                }
+
+                performSearch();
+
+            }
+
+        }
+    );
+
+}
+
+
+if (searchCategory) {
+
+    searchCategory.addEventListener(
+        "change",
         performSearch
     );
 
@@ -3631,6 +3717,8 @@ if (buyConfirmYes) {
         return false;
     };
 }
+
+
 
 // ============================================================
 // START HERO VIDEO LOADING
